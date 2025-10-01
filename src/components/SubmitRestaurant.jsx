@@ -125,23 +125,15 @@ function SubmitRestaurant() {
 
   const onSubmit = async (data) => {
     try {
-      // Netlify Forms로 제출
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          "form-name": "restaurant-submit",
-          ...data
-        }).toString()
-      });
-      
-      if (response.ok) {
-        setSubmitted(true);
-        toast.success('맛집이 성공적으로 제보되었습니다! 🎉');
-        reset();
-        setTimeout(() => setSubmitted(false), 5000);
-      }
+      // ✅ Netlify Forms 제거 → Express API 호출
+      await submissionAPI.createSubmission(data);
+
+      setSubmitted(true);
+      toast.success('맛집이 성공적으로 제보되었습니다! 🎉');
+      reset();
+      setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
+      console.error(error);
       toast.error('제출 중 오류가 발생했습니다.');
     }
   };
