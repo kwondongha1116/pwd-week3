@@ -12,6 +12,8 @@ import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import PopularPage from './pages/PopularPage';
 import SubmitPage from './pages/SubmitPage';
+import AdminPage from './pages/AdminPage';          // ✅ 추가
+import SubmissionsPage from './pages/SubmissionsPage'; // ✅ 추가
 
 // Components
 import Header from './components/Header';
@@ -44,6 +46,11 @@ function App() {
               <Route path="/restaurant/:id" element={<DetailPage />} />
               <Route path="/popular" element={<PopularPage />} />
               <Route path="/submit" element={<SubmitPage />} />
+
+              {/* ✅ 새로 추가된 관리자/제보 라우트 */}
+              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/submissions" element={<SubmissionsPage />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
