@@ -1,6 +1,6 @@
-/* src/App.jsx */
+// src/App.jsx
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,9 +11,9 @@ import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import PopularPage from './pages/PopularPage';
+import AdminPage from './pages/AdminPage';
+import SubmissionsPage from './pages/SubmissionsPage';
 import SubmitPage from './pages/SubmitPage';
-import AdminPage from './pages/AdminPage';          // ✅ 추가
-import SubmissionsPage from './pages/SubmissionsPage'; // ✅ 추가
 
 // Components
 import Header from './components/Header';
@@ -35,7 +35,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <HashRouter>
         <GlobalStyles />
         <div className="app">
           <Header />
@@ -45,12 +45,9 @@ function App() {
               <Route path="/list" element={<ListPage />} />
               <Route path="/restaurant/:id" element={<DetailPage />} />
               <Route path="/popular" element={<PopularPage />} />
-              <Route path="/submit" element={<SubmitPage />} />
-
-              {/* ✅ 새로 추가된 관리자/제보 라우트 */}
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/submissions" element={<SubmissionsPage />} />
-
+              <Route path="/submit" element={<SubmitPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
@@ -70,7 +67,7 @@ function App() {
           pauseOnHover
           theme="light"
         />
-      </BrowserRouter>
+      </HashRouter>
     </QueryClientProvider>
   );
 }
